@@ -1,8 +1,8 @@
 package linkedlist;
 
 public class SingleLinkedList {
-    Node head;
-    Node tail;
+    ListNode head;
+    ListNode tail;
 
 
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class SingleLinkedList {
     }
 
     private void insertAtBeginning(int data) {
-        Node current = new Node(data);
+        ListNode current = new ListNode(data);
         if (head == null) {
             head = current;
             tail = current;
@@ -45,7 +45,7 @@ public class SingleLinkedList {
     }
 
     private void insertAtEnd(int data) {
-        Node current = new Node(data);
+        ListNode current = new ListNode(data);
         if (head == null) {
             head = current;
         } else {
@@ -54,13 +54,13 @@ public class SingleLinkedList {
         tail = current;
     }
 
-    private Node insertAtPosition(int data, int position) {
-        Node current = new Node(data);
+    private ListNode insertAtPosition(int data, int position) {
+        ListNode current = new ListNode(data);
         if (head == null) {
             head = current;
             return head;
         } else {
-            Node temp = head;
+            ListNode temp = head;
             int index = 0;
             while (index != position - 1 && temp != null) {
                 temp = temp.next;
@@ -73,18 +73,18 @@ public class SingleLinkedList {
     }
 
     private void insertAtMiddle(int data) {
-        Node fast = head;
-        Node slow = head;
+        ListNode fast = head;
+        ListNode slow = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-        Node current = new Node(data);
+        ListNode current = new ListNode(data);
         current.next = slow.next;
         slow.next = current;
     }
 
-    private Node deleteFromBeginning() {
+    private ListNode deleteFromBeginning() {
         if (head == null || head.next == null) {
             return null;
         }
@@ -92,12 +92,12 @@ public class SingleLinkedList {
         return head;
     }
 
-    private Node deleteMiddleElement() {
+    private ListNode deleteMiddleElement() {
         if (head == null || head.next == null) {
             return null;
         }
-        Node slow = head;
-        Node fast = head.next.next;
+        ListNode slow = head;
+        ListNode fast = head.next.next;
 
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
@@ -107,11 +107,11 @@ public class SingleLinkedList {
         return head;
     }
 
-    private Node deleteFromPosition(int position) {
+    private ListNode deleteFromPosition(int position) {
         if (head == null || head.next == null) {
             return null;
         }
-        Node temp = head;
+        ListNode temp = head;
         int index = 0;
         while (temp != null) {
             if (index == position - 1) {
@@ -126,20 +126,20 @@ public class SingleLinkedList {
 
 
     private int findMiddleElement() {
-        Node fast = head;
-        Node slow = head;
+        ListNode fast = head;
+        ListNode slow = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-        return slow.data;
+        return slow.val;
     }
 
     private int findElement(int data) {
-        Node temp = head;
+        ListNode temp = head;
         int index = 0;
         while (temp != null) {
-            if (temp.data == data) {
+            if (temp.val == data) {
                 return index;
             }
             index++;
@@ -149,8 +149,8 @@ public class SingleLinkedList {
     }
 
     private boolean hasCycle() {
-        Node fast = head;
-        Node slow = head;
+        ListNode fast = head;
+        ListNode slow = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -160,12 +160,12 @@ public class SingleLinkedList {
         return false;
     }
 
-    public Node reverseList() {
-        Node temp = head;
-        Node prev = null;
+    public ListNode reverseList() {
+        ListNode temp = head;
+        ListNode prev = null;
 
         while (temp != null) {
-            Node next = temp.next;
+            ListNode next = temp.next;
             temp.next = prev;
             prev = temp;
             temp = next;
